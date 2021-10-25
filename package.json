@@ -1,0 +1,17 @@
+{
+  "name": "scram-poc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "browserify": "browserify ./src/browser.js -o public/scripts/bundle.js",
+    "start": "npm run browserify && node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "globalthis": "^1.0.2"
+  }
+}
