@@ -21,13 +21,25 @@ function str2ab(str) {
 /*
   Export the given key and write it into the "exported-key" space.
   */
-async function exportCryptoKey(key) {
+async function exportPublicCryptoKey(key) {
   const exported = await crypto.subtle.exportKey("spki", key);
   const exportedAsString = ab2str(exported);
   const exportedAsBase64 = window.btoa(exportedAsString);
   const pemExported = `-----BEGIN PUBLIC KEY-----\n${exportedAsBase64}\n-----END PUBLIC KEY-----`;
   return pemExported;
 }
+
+/*
+  Export the given key and write it into the "exported-key" space.
+  */
+async function exportPrivateCryptoKey(key) {
+  const exported = await crypto.subtle.exportKey("pkcs8", key);
+  const exportedAsString = ab2str(exported);
+  const exportedAsBase64 = window.btoa(exportedAsString);
+  const pemExported = `-----BEGIN PRIVATE KEY-----\n${exportedAsBase64}\n-----END PRIVATE KEY-----`;
+  return pemExported;
+}
+
 /**
   Import the key given key
  */
@@ -100,7 +112,7 @@ const main = async () => {
 
   // Export public Key part
 
-  const exported = await exportCryptoKey(generated.publicKey);
+  const exported = await exportPublicCryptoKey(generated.publicKey);
   console.log({ exported });
 };
 
