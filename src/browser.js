@@ -112,8 +112,9 @@ const main = async () => {
 
   // Export public Key part
 
-  const exported = await exportPublicCryptoKey(generated.publicKey);
-  console.log({ exported });
+  const publicKeyExported = await exportPublicCryptoKey(generated.publicKey);
+  const privateKeyExported = await exportPrivateCryptoKey(generated.privateKey);
+  console.log({ privateKeyExported, publicKeyExported });
 };
 
 main();
